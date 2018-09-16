@@ -3,7 +3,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 project(Flower)
 
-set(RUSH_RENDER_API "VK" CACHE STRING "Force Vulkan renderer")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	set(RUSH_RENDER_API "MTL" CACHE STRING "Force Metal renderer")
+else()
+	set(RUSH_RENDER_API "VK" CACHE STRING "Force Vulkan renderer")
+endif()
 
 find_program(GLSLC NAMES glslc PATHS
 	$ENV{VULKAN_SDK}/Bin
