@@ -241,7 +241,7 @@ static ColorRGBA hsvToRgb(float h, float s, float v)
 
 static ColorRGBA8 dirToColor(Vec2 dir, float saturation = 1.0f, float brightness = 1.0f)
 {
-	float at = 360.0f * atan2(dir.x, dir.y) / Pi;
+	float at = 360.0f * atan2(1.0f-dir.x, dir.y) / Pi;
 	return hsvToRgb(at, saturation, brightness);
 }
 
