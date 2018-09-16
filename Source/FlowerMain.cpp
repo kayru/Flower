@@ -247,7 +247,7 @@ static ColorRGBA8 dirToColor(Vec2 dir, float saturation = 1.0f, float brightness
 
 static void drawParticles(PrimitiveBatch* prim, const Particles& particles, Vec2 visualDimensions)
 {
-	const u32 particleCount = particles.count;
+	const u32 particleCount = RUSH_COUNTOF(particles.pos);
 	const u32 maxVerticesPerBatch = prim->getMaxBatchVertices();
 	const u32 particlesPerBatch = maxVerticesPerBatch / 2;
 	const u32 batchCount = divUp(particleCount, particlesPerBatch);
@@ -255,7 +255,7 @@ static void drawParticles(PrimitiveBatch* prim, const Particles& particles, Vec2
 	for (u32 batchId = 0; batchId < batchCount; ++batchId)
 	{
 		const u32 firstIndex = batchId * particlesPerBatch;
-		const u32 lastIndex  = min(firstIndex + particlesPerBatch, particles.count);
+		const u32 lastIndex  = min(firstIndex + particlesPerBatch, particleCount);
 		const u32 batchParticleCount = lastIndex - firstIndex;
 		const u32 batchVertexCount = batchParticleCount * 2;
 
